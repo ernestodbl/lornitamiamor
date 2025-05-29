@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Para Lornita, Mi Princesa</title>
+  <!-- Fuentes y iconos -->
+  <link href="https://fonts.googleapis.com/css2?family=Nosifer&family=Dancing+Script&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --rosa-princesa: #FF69B4;
+      --rosa-claro: #FFC0CB;
+      --negro: #1A1A1A;
+      --dorado: #FFD700;
+      --transition: 0.3s ease;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: linear-gradient(135deg, var(--negro) 0%, #2c2c2c 100%);
+      color: var(--rosa-claro);
+      font-family: 'Dancing Script', cursive;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 3rem;
+      color: var(--rosa-princesa);
+      text-shadow: 2px 2px var(--negro);
+      margin-bottom: 0.5em;
+    }
+    p {
+      font-size: 1.5rem;
+      max-width: 500px;
+      line-height: 1.4;
+      margin-bottom: 1.5em;
+    }
+
+    .contador {
+      font-family: 'Nosifer', cursive;
+      font-size: 1.2rem;
+      background: rgba(0,0,0,0.6);
+      padding: 1em 2em;
+      border: 3px solid var(--rosa-princesa);
+      border-radius: 30px;
+      color: var(--dorado);
+      margin-bottom: 2em;
+      backdrop-filter: blur(5px);
+    }
+
+    .heart-container {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      cursor: pointer;
+    }
+    .heart-main {
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 100px; height: 100px;
+      background: var(--rosa-princesa);
+      transform: translate(-50%,-50%) rotate(45deg);
+      border-radius: 20px 20px 0 0;
+      box-shadow: 0 0 20px var(--rosa-princesa);
+      transition: transform var(--transition);
+    }
+    .heart-main:hover {
+      transform: translate(-50%,-50%) rotate(45deg) scale(1.1);
+    }
+
+    .corazon-pequenio {
+      position: absolute;
+      font-size: 1.2rem;
+      opacity: 0;
+      pointer-events: none;
+      will-change: transform, opacity;
+    }
+
+    @keyframes explode {
+      to {
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>¡Feliz Cumpleaños, Lorena!</h1>
+  <p>Para mi princesa Draculaura, mi amor gótico, mi melodía en cada latido. ¡Te amo hasta la eternidad!</p>
+
+  <div class="contador" id="contador">
+    Nuestro amor comenzó hace:<br>
+    <span id="tiempo">0 días 0 horas 0 minutos 0 segundos</span>
+  </div>
+
+  <div class="heart-container" id="container">
+    <div class="heart-main" id="heart"></div>
+  </div>
+
+  <script>
+    // Contador de amor
+    const inicio = new Date('2023-07-23T00:00:00');
+    const elTiempo = document.getElementById('tiempo');
+    setInterval(() => {
+      const diff = Date.now() - inicio;
+      const dias = Math.floor(diff/86400000);
+      const hrs = Math.floor(diff%86400000/3600000);
+      const mins = Math.floor(diff%3600000/60000);
+      const secs = Math.floor(diff%60000/1000);
+      elTiempo.textContent = `${dias}d ${hrs}h ${mins}m ${secs}s`;
+    }, 1000);
+
+    // Efecto explosión de corazones
+    const container = document.getElementById('container');
+    container.addEventListener('click', () => {
+      for (let i = 0; i < 40; i++) {
+        const c = document.createElement('div');
+        c.classList.add('corazon-pequenio');
+        c.textContent = '🦇'; // guiño a Draculaura
+        const size = Math.random()*20 + 10;
+        c.style.fontSize = size + 'px';
+        c.style.color = size>20 ? 'var(--rosa-princesa)' : 'var(--rosa-claro)';
+        c.style.left = '50%';
+        c.style.top = '50%';
+        const dx = (Math.random()-0.5)*300;
+        const dy = (Math.random()-0.5)*300;
+        c.style.transition = 'transform 1s ease-out, opacity 1s ease-out';
+        container.appendChild(c);
+        requestAnimationFrame(() => {
+          c.style.opacity = 1;
+          c.style.transform = `translate(${dx}px, ${dy}px) rotate(${Math.random()*360}deg)`;
+        });
+        // limpiar
+        setTimeout(() => c.remove(), 1200);
+      }
+    });
+  </script>
+</body>
+</html>
