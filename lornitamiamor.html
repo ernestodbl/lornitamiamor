@@ -1,144 +1,175 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Para Lornita, Mi Princesa</title>
-  <!-- Fuentes y iconos -->
-  <link href="https://fonts.googleapis.com/css2?family=Nosifer&family=Dancing+Script&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Para Mi Draculaura 💖🦇</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Pacifico&display=swap" rel="stylesheet">
   <style>
     :root {
-      --rosa-princesa: #FF69B4;
-      --rosa-claro: #FFC0CB;
-      --negro: #1A1A1A;
-      --dorado: #FFD700;
-      --transition: 0.3s ease;
+      --rosa-draculaura: #ff69b4;
+      --rosa-suave: #ffc0cb;
+      --negro-elegante: #1a1a1a;
+      --sombra: rgba(255, 105, 180, 0.6);
     }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      background: linear-gradient(135deg, var(--negro) 0%, #2c2c2c 100%);
-      color: var(--rosa-claro);
-      font-family: 'Dancing Script', cursive;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
+      margin: 0;
+      background: var(--negro-elegante);
+      font-family: 'Pacifico', cursive;
+      color: white;
       overflow: hidden;
     }
 
-    h1 {
-      font-size: 3rem;
-      color: var(--rosa-princesa);
-      text-shadow: 2px 2px var(--negro);
-      margin-bottom: 0.5em;
+    .titulo {
+      text-align: center;
+      padding: 20px;
+      font-family: 'Cinzel Decorative', cursive;
+      font-size: 2.5em;
+      color: var(--rosa-suave);
+      text-shadow: 2px 2px 10px var(--sombra);
     }
-    p {
-      font-size: 1.5rem;
-      max-width: 500px;
-      line-height: 1.4;
-      margin-bottom: 1.5em;
+
+    .corazon-gigante {
+      width: 250px;
+      height: 250px;
+      position: relative;
+      margin: 40px auto;
+      transform: scale(1);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+      animation: latido 2s infinite;
+    }
+
+    .corazon-gigante:hover {
+      transform: scale(1.1);
+    }
+
+    .corazon-gigante::before,
+    .corazon-gigante::after {
+      content: "";
+      position: absolute;
+      width: 250px;
+      height: 250px;
+      background-color: var(--rosa-draculaura);
+      border-radius: 50%;
+    }
+
+    .corazon-gigante::before {
+      top: 0;
+      left: 125px;
+    }
+
+    .corazon-gigante::after {
+      top: 0;
+      left: 0;
+    }
+
+    .corazon-gigante .corazon-centro {
+      position: absolute;
+      top: 125px;
+      left: 62.5px;
+      width: 125px;
+      height: 125px;
+      background-color: var(--rosa-draculaura);
+      transform: rotate(45deg);
+    }
+
+    @keyframes latido {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
     }
 
     .contador {
-      font-family: 'Nosifer', cursive;
-      font-size: 1.2rem;
-      background: rgba(0,0,0,0.6);
-      padding: 1em 2em;
-      border: 3px solid var(--rosa-princesa);
-      border-radius: 30px;
-      color: var(--dorado);
-      margin-bottom: 2em;
-      backdrop-filter: blur(5px);
+      text-align: center;
+      font-size: 1.2em;
+      background: white;
+      color: var(--negro-elegante);
+      padding: 15px;
+      border-radius: 20px;
+      margin: 20px auto;
+      max-width: 400px;
+      box-shadow: 0 0 20px var(--sombra);
     }
 
-    .heart-container {
-      position: relative;
-      width: 200px;
-      height: 200px;
-      cursor: pointer;
-    }
-    .heart-main {
-      position: absolute;
-      top: 50%; left: 50%;
-      width: 100px; height: 100px;
-      background: var(--rosa-princesa);
-      transform: translate(-50%,-50%) rotate(45deg);
-      border-radius: 20px 20px 0 0;
-      box-shadow: 0 0 20px var(--rosa-princesa);
-      transition: transform var(--transition);
-    }
-    .heart-main:hover {
-      transform: translate(-50%,-50%) rotate(45deg) scale(1.1);
+    .mensaje-amor {
+      text-align: center;
+      margin: 20px auto;
+      font-size: 1.4em;
+      max-width: 600px;
+      line-height: 1.6;
+      color: var(--rosa-suave);
     }
 
-    .corazon-pequenio {
+    .particula {
       position: absolute;
-      font-size: 1.2rem;
-      opacity: 0;
+      font-size: 24px;
+      color: var(--rosa-draculaura);
       pointer-events: none;
-      will-change: transform, opacity;
+      animation: volar 2s linear forwards;
     }
 
-    @keyframes explode {
+    @keyframes volar {
+      from {
+        opacity: 1;
+        transform: translate(0, 0) scale(1);
+      }
       to {
         opacity: 0;
+        transform: translate(-50px, -200px) rotate(720deg) scale(0);
       }
     }
   </style>
 </head>
 <body>
-  <h1>¡Feliz Cumpleaños, Lorena!</h1>
-  <p>Para mi princesa Draculaura, mi amor gótico, mi melodía en cada latido. ¡Te amo hasta la eternidad!</p>
+  <div class="titulo">Para Mi Draculaura 💖🦇</div>
+
+  <div class="corazon-gigante" onclick="estallarCorazon(event)">
+    <div class="corazon-centro"></div>
+  </div>
 
   <div class="contador" id="contador">
-    Nuestro amor comenzó hace:<br>
+    Nuestro amor comenzó hace:<br />
     <span id="tiempo">0 días 0 horas 0 minutos 0 segundos</span>
   </div>
 
-  <div class="heart-container" id="container">
-    <div class="heart-main" id="heart"></div>
+  <div class="mensaje-amor">
+    Lorena, cada segundo contigo es magia oscura con brillo rosado.<br>
+    Eres mi murciélago favorito, mi amor eterno, mi reina Monster High. <br>
+    🦇💖 Siempre tuyo, Ernesto.
   </div>
 
   <script>
-    // Contador de amor
-    const inicio = new Date('2023-07-23T00:00:00');
-    const elTiempo = document.getElementById('tiempo');
-    setInterval(() => {
-      const diff = Date.now() - inicio;
-      const dias = Math.floor(diff/86400000);
-      const hrs = Math.floor(diff%86400000/3600000);
-      const mins = Math.floor(diff%3600000/60000);
-      const secs = Math.floor(diff%60000/1000);
-      elTiempo.textContent = `${dias}d ${hrs}h ${mins}m ${secs}s`;
-    }, 1000);
+    const fechaInicio = new Date('2023-07-23T00:00:00');
 
-    // Efecto explosión de corazones
-    const container = document.getElementById('container');
-    container.addEventListener('click', () => {
-      for (let i = 0; i < 40; i++) {
-        const c = document.createElement('div');
-        c.classList.add('corazon-pequenio');
-        c.textContent = '🦇'; // guiño a Draculaura
-        const size = Math.random()*20 + 10;
-        c.style.fontSize = size + 'px';
-        c.style.color = size>20 ? 'var(--rosa-princesa)' : 'var(--rosa-claro)';
-        c.style.left = '50%';
-        c.style.top = '50%';
-        const dx = (Math.random()-0.5)*300;
-        const dy = (Math.random()-0.5)*300;
-        c.style.transition = 'transform 1s ease-out, opacity 1s ease-out';
-        container.appendChild(c);
-        requestAnimationFrame(() => {
-          c.style.opacity = 1;
-          c.style.transform = `translate(${dx}px, ${dy}px) rotate(${Math.random()*360}deg)`;
-        });
-        // limpiar
-        setTimeout(() => c.remove(), 1200);
+    function actualizarContador() {
+      const ahora = new Date();
+      const diff = ahora - fechaInicio;
+
+      const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutos = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const segundos = Math.floor((diff % (1000 * 60)) / 1000);
+
+      document.getElementById("tiempo").innerText = `${dias} días ${horas} horas ${minutos} minutos ${segundos} segundos`;
+    }
+
+    setInterval(actualizarContador, 1000);
+    actualizarContador();
+
+    function estallarCorazon(e) {
+      const cantidad = 20;
+      for (let i = 0; i < cantidad; i++) {
+        const span = document.createElement('span');
+        span.classList.add('particula');
+        span.innerText = Math.random() > 0.5 ? '🦇' : '💖';
+        span.style.left = e.clientX + (Math.random() * 100 - 50) + "px";
+        span.style.top = e.clientY + (Math.random() * 100 - 50) + "px";
+        document.body.appendChild(span);
+
+        setTimeout(() => span.remove(), 2000);
       }
-    });
+    }
   </script>
 </body>
 </html>
